@@ -1,7 +1,7 @@
 import requests
-from bs4 import BeautifulSoup
 import json
 headers = {"authorization": "YOUR TOKEN HERE"}
+
 all_messages = []
 def main():
     lists = 0
@@ -11,10 +11,10 @@ def main():
         while True:
             url = f"https://discord.com/api/v9/channels/{chid}/messages?before={id}&limit=100"
             r = requests.get(url=url, headers=headers)
-            soup = BeautifulSoup(r.text, 'lxml')
-            text = json.loads(soup.text)
+            text = json.loads(r.text)
             if len(text) == 0:
-                print("All messages has parsed"); break
+                print("All messages has parsed")
+                break
             for item in text:
                 if item['content'] != "":
                     all_messages.insert(0, {item['author']['username']: item['content']})
