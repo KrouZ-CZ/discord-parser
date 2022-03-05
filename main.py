@@ -23,7 +23,7 @@ def main():
             url = f"https://discord.com/api/v9/channels/{chid}/messages?before={id}&limit=100"
     except:
         print('Operation except')
-    with open('ServerForBrother.json', "w", encoding='utf-8') as file:
+    with open('data.json', "w", encoding='utf-8') as file:
         json.dump(all_messages, file, indent=4, ensure_ascii=False)
     print('All data saved!')
 if __name__ == "__main__":
